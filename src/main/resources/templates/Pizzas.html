@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>Pizzas:</h1>
+	<form>
+		<label for="search">SEARCH</label>
+		<input id="search" type="text" name="q" th:value="${q}">
+		<input type="submit" value="SEARCH">
+	</form>
+	<a th:href="@{/pizzas/create}">Crea</a>
+	<a th:href="@{/ingredients}">Ingredienti</ath>
+	<ul>
+		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
+			<a th:href="@{/pizzas/{id}(id=${pizza.id})}">
+				[[${pizza.nome}]] - [[${pizza.descrizione}]]
+			</a>
+			<div>
+				<a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}"><button>Modifica</button></a>					
+				<form th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="POST" style="display: inline-block;">
+					<input class="bg-danger" type="submit" value="Elimina">
+				</form>
+			</div>
+			<div>
+				<h4>Ingredienti</h4>
+				<ul>
+					<li
+						th:each="ingredient : *{ingredients}"
+						th:object="${ingredient}"
+						>
+						[[*{nome}]]
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</body>
+
+</html>

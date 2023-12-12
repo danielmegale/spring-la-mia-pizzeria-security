@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>Coupon</h1>
+
+	<form method="POST" th:object="${coupon}">
+		<div>
+			<label for="titolo" class="form-label">Nome offerta</label>
+			<input type="text" class="form-control" id="titolo" name="titolo" th:field="*{titolo}">
+		</div>
+
+		
+		<div>
+			<label for="dataDiInizio" class="form-label">Data di inizio dell'offerta</label>
+			<input type="date" class="form-control" id="dataDiInzio" name="dataDiInzio" th:field="*{dataDiInzio}" th:value="*{dataDiInzio}">
+		</div>
+
+		
+		<div>
+			<label for="dataDiFine" class="form-label">Data di fine dell'offerta</label>
+			<input type="date" class="form-control" id="dataDiFine" name="dataDiFine" th:field="*{dataDiFine}" th:value="*{dataDiFine}">
+		</div>
+			<input type="submit" value="STORE">
+	</form>
+	</div>
+
+</body>
+
+</html>

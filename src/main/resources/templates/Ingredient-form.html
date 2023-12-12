@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1>Nuovo Ingrediente</h1>
+	<form th:object="${ingredient}" method="POST">
+		<label for="nome">Nome Ingrediente:</label>
+        <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+        <br>
+        <input type="submit" value="STORE" class="btn btn-primary">
+	</form>
+</body>
+
+</html>

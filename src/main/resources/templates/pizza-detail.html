@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<h1 th:text="${pizzaId.nome}"></h1>
+	<p th:text="${pizzaId.descrizione}"></p>
+	<p th:text="${pizzaId.prezzo}+'€'"></p>
+
+	<ul>
+		<li th:each="coupon : ${coupon}" th:object="${coupon}">
+			[[*{titolo}]] - [[*{dataDiInzio}]] - [[*{dataDiFine}]]
+			<a th:href="@{/pizzas/{id}/coupon/edit (id=${coupon.id})}"><button>Modifica</button></a>		
+			<form th:action="@{/pizzas/{pizzaId}/deleteCoupon/{couponId}(pizzaId=${pizzaId.id}, couponId=${coupon.id})}"
+				method="POST" style="display: inline-block;">
+				<input class="bg-danger" type="submit" value="Elimina">
+			</form>
+		</li>
+	</ul>
+	<ul>
+		<li th:each="ingredient : *{ingredients}" th:object="${ingredient}"
+		>
+		[[*{nome}]]
+		</li>
+	</ul>
+	<a th:href="@{/pizzas/{id}/coupon (id=*{id})}">Nuova offerta</a>
+</body>
+
+</html>
