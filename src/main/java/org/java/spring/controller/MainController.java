@@ -9,6 +9,7 @@ import org.java.spring.db.service.CouponService;
 import org.java.spring.db.service.IngredientService;
 import org.java.spring.db.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,12 +34,17 @@ public class MainController {
 	private CouponService couponService;
 
 	@GetMapping()
-	public String searchPizzas(Model model, @RequestParam(required = false) String q) {
+	public String searchPizzas(Model model, @RequestParam(required = false) String q,Authentication auth) {
 
 		List<Pizza> pizzas = q == null ? pizzaService.findAll() : pizzaService.findByTitle(q);
 
 		model.addAttribute("pizzas", pizzas);
 		model.addAttribute("q", q == null ? "" : q);
+		
+		System.out.println(
+				auth == null
+				? "No logged in"
+				: "User" + auth.getName());
 
 		return "Pizzas";
 	}

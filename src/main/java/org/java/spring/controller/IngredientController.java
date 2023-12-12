@@ -3,7 +3,7 @@ package org.java.spring.controller;
 
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
-import org.java.spring.db.service.IngredientService;
+import org.java.spring.db.service.IngredientService; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

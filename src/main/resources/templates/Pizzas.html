@@ -9,13 +9,16 @@
 
 <body>
 	<h1>Pizzas:</h1>
+	User: <span sec:authentication="name"></span>
 	<form>
 		<label for="search">SEARCH</label>
 		<input id="search" type="text" name="q" th:value="${q}">
 		<input type="submit" value="SEARCH">
 	</form>
+	<div sec:authorize="hasAuthority('ADMIN')">	
 	<a th:href="@{/pizzas/create}">Crea</a>
 	<a th:href="@{/ingredients}">Ingredienti</ath>
+	</div>
 	<ul>
 		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
 			<a th:href="@{/pizzas/{id}(id=${pizza.id})}">
