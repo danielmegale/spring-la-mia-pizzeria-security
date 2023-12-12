@@ -24,7 +24,7 @@
 			<a th:href="@{/pizzas/{id}(id=${pizza.id})}">
 				[[${pizza.nome}]] - [[${pizza.descrizione}]]
 			</a>
-			<div>
+			<div sec:authorize="hasAuthority('ADMIN')">
 				<a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}"><button>Modifica</button></a>					
 				<form th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="POST" style="display: inline-block;">
 					<input class="bg-danger" type="submit" value="Elimina">

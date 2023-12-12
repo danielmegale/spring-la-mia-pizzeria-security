@@ -69,7 +69,7 @@ public class MainController {
 	}
 
 	@GetMapping("/pizzas/{id}")
-	public String getPizzaId(Model model, @PathVariable int id) {
+	public String getPizzaId(Model model, @PathVariable int id,Authentication auth) {
 		Pizza pizzaId = pizzaService.findById(id);
 		List<Coupon> coupons =pizzaId.getCoupons();
 		List<Ingredient>  ingredients = pizzaId.getIngredients();

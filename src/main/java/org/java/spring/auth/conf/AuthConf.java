@@ -16,9 +16,18 @@ public class AuthConf {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	http.authorizeHttpRequests()
-	.requestMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
-	.requestMatchers("/admin/**").hasAuthority("ADMIN")
-	.requestMatchers("/").permitAll()
+	.requestMatchers("/pizzas/create").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/edit/{id}").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/delete/{id}").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/{id}/coupon").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/{id}/coupon\"").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/{id}/coupon/edit").hasAnyAuthority("ADMIN")
+	.requestMatchers("/pizzas/{pizzaId}/deleteCoupon/{couponId}").hasAnyAuthority("ADMIN")
+	.requestMatchers("/ingredients").hasAnyAuthority("ADMIN")
+	.requestMatchers("/ingredients/create").hasAnyAuthority("ADMIN")
+	.requestMatchers("/ingredients/edit/{id}").hasAnyAuthority("ADMIN")
+	.requestMatchers("/ingredients/delete/{id}").hasAnyAuthority("ADMIN")
+	.requestMatchers("/**").permitAll()
 	.and().formLogin()
 	.and().logout();
 	return http.build();

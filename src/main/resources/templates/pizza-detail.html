@@ -15,11 +15,13 @@
 	<ul>
 		<li th:each="coupon : ${coupon}" th:object="${coupon}">
 			[[*{titolo}]] - [[*{dataDiInzio}]] - [[*{dataDiFine}]]
+			<div sec:authorize="hasAuthority('ADMIN')">				
 			<a th:href="@{/pizzas/{id}/coupon/edit (id=${coupon.id})}"><button>Modifica</button></a>		
 			<form th:action="@{/pizzas/{pizzaId}/deleteCoupon/{couponId}(pizzaId=${pizzaId.id}, couponId=${coupon.id})}"
 				method="POST" style="display: inline-block;">
 				<input class="bg-danger" type="submit" value="Elimina">
 			</form>
+			</div>
 		</li>
 	</ul>
 	<ul>
@@ -28,7 +30,9 @@
 		[[*{nome}]]
 		</li>
 	</ul>
-	<a th:href="@{/pizzas/{id}/coupon (id=*{id})}">Nuova offerta</a>
+	<div sec:authorize="hasAuthority('ADMIN')">
+	<a th:href="@{/pizzas/{id}/coupon (id=*{id})}">Nuova offerta</a>		
+	</div>
 </body>
 
 </html>
